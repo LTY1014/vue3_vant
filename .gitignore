@@ -1,0 +1,19 @@
+# Editor directories and files
+.idea/
+.vscode/
+
+### JetBrains ###
+*.iws
+*.iml
+*.ipr
+
+### back ###
+target/
+
+
+### front ###
+node_modules/
+dist/
+package-lock.json
+yarn.lock
+.DS_Store
