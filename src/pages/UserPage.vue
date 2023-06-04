@@ -12,6 +12,7 @@
     </van-grid>
     <template v-if="user">
       <van-cell title="当前用户名" :value="user.userName" />
+      <van-cell title="用户性别" :value="genderEnum[user.gender]" />
       <!--todo 修改路由-->
       <van-cell title="个人设置" is-link to="/user" />
       <van-cell title="应用设置" is-link to="/user" />
@@ -29,6 +30,7 @@ import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { showSuccessToast } from 'vant'
 import { userLogout } from '@/api'
+import { genderEnum } from '@/constants'
 
 const router = useRouter()
 
