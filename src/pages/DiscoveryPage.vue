@@ -24,14 +24,9 @@
       </van-grid-item>
     </van-grid>
   </div>
-
-  <!--<van-button @click="getRequestFail">点我发失败请求</van-button>-->
-  <!--<van-button @click="getRequestSuccess">点我发成功请求</van-button>-->
-  <!--<h3>{{ result }}</h3>-->
 </template>
 
 <script setup>
-import myAxios from '@/plugins/myAxios'
 import { ref } from 'vue'
 
 let searchText = ref('')
@@ -50,21 +45,6 @@ const option2 = [
 ]
 
 const result = ref('')
-
-// 模拟后端请求
-const getRequestFail = () => {
-  myAxios.get('/getPort').then((res) => {
-    result.value = res.toString()
-  })
-}
-
-// 模拟后端请求
-const getRequestSuccess = () => {
-  myAxios.get('/').then((res) => {
-    // console.log(res)
-    result.value = res.toString()
-  })
-}
 </script>
 
 <style scoped></style>

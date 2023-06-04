@@ -12,14 +12,12 @@
     <van-grid-item icon="guide-o" text="饮品" />
     <van-grid-item icon="link-o" text="面包" />
   </van-grid>
-
-  <van-submit-bar style="margin-bottom: 70px" :price="888" button-text="提交订单" @submit="onSubmit" />
 </template>
 
 <script setup>
 import { showSuccessToast } from 'vant'
 
-let notice = '欢迎来到:'
+let notice = '欢迎来到XXX:'
 
 const onSubmit = () => {
   showSuccessToast('购买成功')

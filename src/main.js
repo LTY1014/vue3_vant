@@ -4,6 +4,7 @@ import * as VueRouter from 'vue-router'
 import routes from './router/route'
 import vantConfig from 'vant'
 import 'vant/lib/index.css'
+import { createPinia } from 'pinia'
 
 const app = createApp(App)
 app.use(vantConfig)
@@ -12,5 +13,7 @@ const router = VueRouter.createRouter({
   history: VueRouter.createWebHistory(),
   routes, // `routes: routes` 的缩写
 })
+const store = createPinia()
 app.use(router)
+app.use(store)
 app.mount('#app')

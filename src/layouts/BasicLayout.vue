@@ -1,5 +1,5 @@
 <template>
-  <van-nav-bar :title="title" left-text="返回" left-arrow>
+  <van-nav-bar :title="title" left-text="返回" left-arrow @click-left="router.back()">
     <template #right>
       <van-icon name="search" size="18" />
     </template>
