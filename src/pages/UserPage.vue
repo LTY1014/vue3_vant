@@ -27,7 +27,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/store/userStore'
 import { showSuccessToast } from 'vant'
 import { userLogout } from '@/api'
 
@@ -41,10 +40,16 @@ const router = useRouter()
 // }
 
 const user = ref()
-const userStore = useUserStore()
 
 onMounted(() => {
-  user.value = userStore.getLoginUser()
+  let loginUser = sessionStorage.getItem('loginUser')
+  if (loginUser != null) {
+    // 将JSON格式的对象解析为js对象，currentUser为一个js对象
+    user.value = JSON.parse(loginUser)
+  }
+  if (!user.value) {
+    router.push('/user/login')
+  }
 })
 
 const toUserLogin = () => {
@@ -55,9 +60,8 @@ const onLogout = async () => {
   const res = await userLogout()
   if (res.code === 0) {
     showSuccessToast('退出成功')
-    // 清除store
-    const userStore = useUserStore()
-    userStore.logout()
+    // 移除本地用户信息
+    sessionStorage.setItem('loginUser', JSON.stringify(''))
     // 刷新页面
     router.go(0)
   }

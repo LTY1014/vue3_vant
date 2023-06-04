@@ -28,7 +28,6 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { showFailToast, showSuccessToast } from 'vant'
 import { userLogin } from '@/api'
-import { useUserStore } from '@/store/userStore'
 
 const router = useRouter()
 
@@ -45,9 +44,8 @@ const onSubmit = async () => {
   const res = await userLogin(user)
   if (res.code === 0 && res.data) {
     showSuccessToast('登录成功')
-    // 用户信息存储到store
-    useUserStore().$state.loginUser = res.data
-    // TODO 登录完跳转到页面
+    // 用户信息存储到本地
+    sessionStorage.setItem('loginUser', JSON.stringify(res.data))
     router.push('/user')
   } else {
     showFailToast('登录失败')
